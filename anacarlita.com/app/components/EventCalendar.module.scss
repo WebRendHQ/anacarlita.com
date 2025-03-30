@@ -1,0 +1,341 @@
+@import '../variables';
+
+.eventCalendar {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.calendarContainer {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  
+  @media (min-width: $breakpoint-lg) {
+    max-width: 400px;
+  }
+}
+
+.calendar {
+  width: 100%;
+  border: 1px solid $gray-light;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  background-color: $warm-white-light;
+  box-shadow: $shadow-sm;
+  font-family: $font-family-secondary;
+  
+  // Calendar navigation buttons
+  button {
+    background-color: transparent;
+    border: none;
+    color: $text-dark;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color $transition-normal;
+    
+    &:hover, &:focus {
+      color: $secondary;
+    }
+    
+    &:disabled {
+      color: $gray;
+      cursor: not-allowed;
+    }
+  }
+  
+  // Calendar header
+  .react-calendar__navigation {
+    display: flex;
+    margin-bottom: $spacing-md;
+    
+    button {
+      padding: $spacing-sm;
+      font-size: 1.25rem;
+      
+      &.react-calendar__navigation__label {
+        font-weight: 500;
+        font-family: $font-family-primary;
+      }
+    }
+  }
+  
+  // Calendar month view
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: $gray-dark;
+    margin-bottom: $spacing-sm;
+    
+    abbr {
+      text-decoration: none;
+    }
+  }
+  
+  // Calendar tiles
+  .react-calendar__tile {
+    padding: $spacing-sm;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 2;
+    border-radius: $border-radius-sm;
+    transition: all $transition-normal;
+    position: relative;
+    
+    &:hover, &:focus {
+      background-color: rgba($primary, 0.1);
+    }
+    
+    &--now {
+      background-color: rgba($secondary, 0.05);
+      font-weight: 500;
+    }
+    
+    &--active {
+      background-color: $primary !important;
+      color: $text-light !important;
+    }
+  }
+  
+  // Weekend days
+  .react-calendar__month-view__days__day--weekend {
+    color: $secondary;
+  }
+  
+  // Days from other months
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: $gray;
+  }
+}
+
+// Event marker for dates with events
+.eventMarker {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $accent;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Tile with event
+.hasEvent {
+  font-weight: 500;
+}
+
+// Event form
+.eventForm {
+  flex: 1;
+  background-color: $warm-white-light;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    color: $text-dark;
+  }
+}
+
+.formGroup {
+  margin-bottom: $spacing-md;
+  
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 500;
+    color: $text-dark;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: $spacing-sm;
+    border: 1px solid $gray;
+    border-radius: $border-radius-sm;
+    font-family: $font-family-secondary;
+    font-size: 1rem;
+    background-color: $warm-white;
+    transition: border-color $transition-normal;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  }
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formError {
+  color: $error;
+  margin-bottom: $spacing-md;
+  font-size: 0.9rem;
+}
+
+.formSuccess {
+  background-color: lighten($success, 40%);
+  color: $success;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-sm;
+  margin-bottom: $spacing-md;
+  font-size: 0.9rem;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+}
+
+.cancelButton {
+  padding: $spacing-sm $spacing-lg;
+  border: 1px solid $gray;
+  background-color: $warm-white;
+  color: $text-dark;
+  font-family: $font-family-secondary;
+  font-weight: 500;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: $gray-light;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.submitButton {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  background-color: $primary;
+  color: $text-light;
+  font-family: $font-family-secondary;
+  font-weight: 500;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Event list
+.eventList {
+  margin-top: $spacing-lg;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    color: $text-dark;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.eventItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  background-color: $warm-white-light;
+  border-radius: $border-radius-sm;
+  border-left: 3px solid $primary;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.eventInfo {
+  flex: 1;
+  
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    color: $text-dark;
+    font-size: 1rem;
+  }
+  
+  p {
+    margin: 0;
+    color: $gray-dark;
+    font-size: 0.875rem;
+    
+    &.eventDate {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      font-weight: 500;
+      color: $secondary;
+    }
+  }
+}
+
+.eventActions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.actionButton {
+  background-color: transparent;
+  border: none;
+  color: $gray-dark;
+  cursor: pointer;
+  padding: $spacing-xs;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: $gray-light;
+    color: $text-dark;
+  }
+  
+  &.edit:hover {
+    color: $secondary;
+  }
+  
+  &.delete:hover {
+    color: $error;
+  }
+} 

@@ -1,0 +1,149 @@
+@import '../variables';
+
+.footer {
+  background-color: $warm-white-dark;
+  padding: $spacing-xl 0 $spacing-md;
+  margin-top: $spacing-xxl;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footerSection {
+  h3 {
+    font-family: $font-family-primary;
+    font-size: 1.25rem;
+    margin-bottom: $spacing-md;
+    color: $text-dark;
+  }
+  
+  p {
+    color: $gray-dark;
+    margin-bottom: $spacing-md;
+    font-size: 0.9rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: $spacing-sm;
+      
+      a {
+        color: $gray-dark;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color $transition-normal;
+        
+        &:hover {
+          color: $secondary;
+        }
+      }
+    }
+  }
+  
+  address {
+    font-style: normal;
+    color: $gray-dark;
+    font-size: 0.9rem;
+    
+    p {
+      margin-bottom: $spacing-sm;
+    }
+    
+    a {
+      color: $secondary;
+      text-decoration: none;
+      transition: color $transition-normal;
+      
+      &:hover {
+        color: darken($secondary, 10%);
+      }
+    }
+  }
+}
+
+.socialLinks {
+  display: flex;
+  gap: $spacing-md;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $gray-light;
+    transition: all $transition-normal;
+    
+    svg {
+      fill: $gray-dark;
+      transition: fill $transition-normal;
+    }
+    
+    &:hover {
+      background-color: $secondary;
+      
+      svg {
+        fill: $text-light;
+      }
+    }
+  }
+}
+
+.footerBottom {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-md;
+  border-top: 1px solid $gray-light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+  
+  p {
+    color: $gray-dark;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+.footerLinks {
+  display: flex;
+  gap: $spacing-lg;
+  
+  a {
+    color: $gray-dark;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color $transition-normal;
+    
+    &:hover {
+      color: $secondary;
+    }
+  }
+} 
